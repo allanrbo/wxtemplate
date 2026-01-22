@@ -1,0 +1,14 @@
+/reference/
+/build/
+/build-*/
+/CMakeCache.txt
+/CMakeFiles/
+/cmake_install.cmake
+/Makefile
+/*.dmg
+/*.zip
+/*.tgz
+/*.tar.gz
+/*.deb
+/*.AppImage
+/_CPack_Packages/

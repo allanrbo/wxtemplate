@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=mywxapp1
+Comment=Minimal wxWidgets demo
+Icon=mywxapp1
+Exec=mywxapp1
+Terminal=false
+Categories=Utility;
