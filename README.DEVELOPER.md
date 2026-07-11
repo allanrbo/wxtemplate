@@ -14,7 +14,7 @@ macOS:
     xcode-select --install
     # Download and install CMake dmg from https://cmake.org/
 
-Windows (MSYS2 shell (blue icon)):
+Windows (MSYS2 MINGW64 shell, blue icon):
 
     pacman -Syy
     pacman -Syuu
@@ -44,8 +44,8 @@ Each platform should keep its own build directory so CMake caches don't clash wh
     # Run it
     ./build-linux/project-build/mywxapp1
 
-    # Windows (MSYS2 shell (blue icon))
-    cmake -S . -B build-windows -DCMAKE_BUILD_TYPE=Release
+    # Windows (MSYS2 MINGW64 shell, blue icon)
+    cmake -S . -B build-windows -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release
     cmake --build build-windows --parallel 8
     cpack --config build-windows/project-build/CPackConfig.cmake -D CPACK_GENERATOR=ZIP
 
@@ -55,7 +55,7 @@ Each platform should keep its own build directory so CMake caches don't clash wh
     cpack --config build-macos/project-build/CPackConfig.cmake -D CPACK_GENERATOR=DragNDrop
 
 
-The first build downloads and builds wxWidgets 3.2.8, installing it under `build-linux/wx-install`. Subsequent builds reuse it.
+The first build downloads and builds wxWidgets 3.2.8, installing it under the platform build directory, for example `build-windows/wx-install`. Subsequent builds reuse it.
 
 Set `-DCMAKE_BUILD_TYPE=Debug` during the initial configure (with your per-OS build directory) if you prefer a debug wxWidgets build; the cached libraries match whatever configuration you build first.
 

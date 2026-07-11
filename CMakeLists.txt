@@ -29,6 +29,7 @@ if(SUPERBUILD)
         CMAKE_ARGS
             -DwxBUILD_SHARED=OFF
             -DwxBUILD_MONOLITHIC=OFF
+            -DwxBUILD_LOCALES=OFF
             -DwxBUILD_SAMPLES=OFF
             -DwxBUILD_DEMOS=OFF
             -DwxBUILD_TESTS=OFF
