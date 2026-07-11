@@ -29,17 +29,14 @@ Windows (MSYS2 shell (blue icon)):
 
 ### Configure and build
 
-Each platform should keep its own build directory so CMake caches don’t clash when the tree lives on a shared drive. Example per OS:
+Each platform should keep its own build directory so CMake caches don't clash when the tree lives on a shared drive. Example per OS:
 
     # Linux
     cmake -S . -B build-linux -DCMAKE_BUILD_TYPE=Release
     cmake --build build-linux --parallel 8
     cpack --config build-linux/project-build/CPackConfig.cmake -D CPACK_GENERATOR=DEB
     cpack --config build-linux/project-build/CPackConfig.cmake -D CPACK_GENERATOR=TGZ
-    # Copy the finished packages to the repo root if desired:
-    cp build-linux/project-build/mywxapp1-1.0-Linux-x86_64.deb .
-    cp build-linux/project-build/mywxapp1-1.0-Linux-x86_64.tar.gz .
-    # Optional AppImage packaging
+    # Optional AppImage packaging (requires curl unless its tools are already cached)
     ./make-appimage.sh
 
     # Check which dynamic libraries this binary depends on.
@@ -58,16 +55,11 @@ Each platform should keep its own build directory so CMake caches don’t clash 
     cpack --config build-macos/project-build/CPackConfig.cmake -D CPACK_GENERATOR=DragNDrop
 
 
-The first configure run downloads and builds wxWidgets 3.2.8, installing it under `build/third_party/wxwidgets/3.2.8`. Subsequent builds reuse that output, so a rebuild only recompiles the application itself.
+The first build downloads and builds wxWidgets 3.2.8, installing it under `build-linux/wx-install`. Subsequent builds reuse it.
 
 Set `-DCMAKE_BUILD_TYPE=Debug` during the initial configure (with your per-OS build directory) if you prefer a debug wxWidgets build; the cached libraries match whatever configuration you build first.
 
-Run the app straight from the build tree:
-
-    ./build/mywxapp1
-
-
-### Cleaning the third-party cache
+### Cleaning build directories
 
     rm -rf build-linux build-windows build-macos
 
