@@ -3,7 +3,7 @@ Development
 
 ### Prerequisites
 
-You only need GTK 3 on Linux, the Xcode SDK on macOS, or MinGW on Windows. The project automatically builds wxWidgets for you.
+You need CMake plus GTK 3 on Linux, the Xcode command line tools on macOS, or MinGW on Windows. The project automatically builds wxWidgets for you.
 
 Linux (Debian/Ubuntu):
 
